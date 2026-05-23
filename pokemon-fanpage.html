@@ -580,8 +580,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 /* Plink SFX */
 const plinkSfx = new Audio('Audio/Pokémon-plink.mp3');
 const gameBoySfx = new Audio('Audio/nintendo-game-boy-startup.mp3');
+const itemFoundSfx = new Audio('Audio/pokemon-red_blue_yellow-item-found-sound-effect.mp3');
 function playPlink() { plinkSfx.currentTime = 0; plinkSfx.play().catch(() => {}); }
 function playGameBoy() { gameBoySfx.currentTime = 0; gameBoySfx.play().catch(() => {}); }
+function playItemFound() { itemFoundSfx.currentTime = 0; itemFoundSfx.play().catch(() => {}); }
 
 /* Theme */
 const themeBtn = document.getElementById('themeBtn');
@@ -640,6 +642,10 @@ soundBtn.addEventListener('click', () => {
     playNextTrack();
     musicBadge.classList.add('on');
   }
+});
+
+document.querySelectorAll('.social-btn').forEach(btn => {
+  btn.addEventListener('click', playItemFound);
 });
 </script>
 </body>
