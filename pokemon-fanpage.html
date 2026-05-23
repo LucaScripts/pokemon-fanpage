@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pokédex do Treinador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Controls -->
+<div class="top-bar">
+  <button class="ctrl-btn" id="themeBtn" title="Alternar tema"><img class="item-icon" id="themeIcon" src="Imagens/sol-icon.png" alt="tema"></button>
+  <button class="ctrl-btn" id="soundBtn" title="Ligar/Desligar música"><img class="item-icon" id="soundIcon" src="Imagens/sound-off.png" alt="som"></button>
+</div>
+
+<!-- Music badge -->
+<div class="music-badge" id="musicBadge">
+  <div class="music-dot"></div>
+  <span id="trackName">Pokémon Lab — Kanto</span>
+</div>
+
+<!-- MAIN -->
+<main>
+  <section class="hero">
+    <h1>olá! <span class="accent">sou treinador</span></h1>
+    <p>fã de pokémon, explorador e desenvolvedor</p>
+  </section>
+
+  <div class="cards-grid">
+    <div class="nav-card" data-panel="sobre">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/25.png" alt="Pikachu">
+      <span>sobre</span>
+    </div>
+    <div class="nav-card" data-panel="links">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/39.png" alt="Jigglypuff">
+      <span>links</span>
+    </div>
+    <div class="nav-card" data-panel="pokedex">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/1.png" alt="Bulbasaur">
+      <span>pokédex</span>
+    </div>
+    <div class="nav-card" data-panel="faq">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/54.png" alt="Psyduck">
+      <span>faq</span>
+    </div>
+    <div class="nav-card" data-panel="contato">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/94.png" alt="Gengar">
+      <span>contato</span>
+    </div>
+    <div class="nav-card" data-panel="extras">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/133.png" alt="Eevee">
+      <span>extras</span>
+    </div>
+  </div>
+
+  <!-- Wave + Footer -->
+  <div class="wave-wrap">
+    <svg viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="55">
+      <path d="M0,45 C180,5 360,80 540,45 C720,5 900,80 1080,45 C1140,32 1170,28 1200,30 L1200,80 L0,80 Z" fill="#CC0000"/>
+    </svg>
+    <div class="footer-area">
+      <div class="social-links">
+        <a class="social-btn" href="#" title="X / Twitter" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a class="social-btn" href="#" title="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a class="social-btn" href="#" title="YouTube" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a class="social-btn" href="#" title="GitHub" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+      </div>
+      <p class="footer-copyright">© 2025 Treinador Pokémon</p>
+      <div class="mascot-wrap">
+        <img
+          id="mascot"
+          class="mascot"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif"
+          alt="Pikachu"
+          title="Clique no Pikachu! ⚡">
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ========== PANELS ========== -->
+
+<!-- SOBRE -->
+<div class="panel-overlay" id="panel-sobre">
+  <div class="panel-backdrop"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/25.png" alt="">
+      <span class="panel-title">sobre</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="trainer-card">
+        <img class="t-avatar" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="">
+        <div class="t-info">
+          <h3>TREINADOR POKÉMON</h3>
+          <p><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/town-map.png" alt=""> Região: Kanto</p>
+          <p><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/star-piece.png" alt=""> Distintivos: 8/8</p>
+          <p><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png" alt=""> Rank: Campeão Elite</p>
+        </div>
+      </div>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oran-berry.png" alt=""> olá!</p>
+      <p class="body-text">Fã de Pokémon desde a geração I. Minha jornada começou com o Pokémon Red no Game Boy e nunca mais parou. Cada nova geração traz novas aventuras!</p>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt=""> minha jornada</p>
+      <ul class="body-text" style="padding-left:18px;">
+        <li>Pokémon Red/Blue — Game Boy (1999)</li>
+        <li>Pokémon Gold/Silver — GBC (2001)</li>
+        <li>Pokémon Ruby/Sapphire — GBA (2003)</li>
+        <li>Pokémon Diamond/Pearl — DS (2007)</li>
+        <li>Pokémon Black/White — DS (2011)</li>
+        <li>Pokémon X/Y — 3DS (2014)</li>
+        <li>Pokémon Sword/Shield — Switch (2019)</li>
+        <li>E todos os outros! 😄</li>
+      </ul>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heart-scale.png" alt=""> starter favorito</p>
+      <div class="starter-row">
+        <div class="starter-item">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander">
+          <p>Charmander</p>
+          <span class="type-badge tf">FOGO</span>
+        </div>
+        <div class="starter-item">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt="Squirtle">
+          <p>Squirtle</p>
+          <span class="type-badge tw">ÁGUA</span>
+        </div>
+        <div class="starter-item">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur">
+          <p>Bulbasaur</p>
+          <span class="type-badge tg">GRAMA</span>
+        </div>
+      </div>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/star-piece.png" alt=""> outros interesses</p>
+      <ul class="body-text" style="padding-left:18px;">
+        <li>Desenvolvimento de jogos indie</li>
+        <li>Trilhas sonoras de RPGs clássicos</li>
+        <li>Cartas TCG — colecionador</li>
+        <li>Pokémon Mystery Dungeon</li>
+        <li>Shiny hunting 🍀</li>
+        <li>Batalhas online competitivas ⚔️</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- LINKS -->
+<div class="panel-overlay" id="panel-links">
+  <div class="panel-backdrop"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/39.png" alt="">
+      <span class="panel-title">links</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <p class="body-text" style="color:var(--text-muted); margin-bottom:14px;">Recursos e comunidades Pokémon. Clique para abrir em nova aba!</p>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/old-amber.png" alt=""> recursos</p>
+      <a class="link-btn" href="https://bulbapedia.bulbagarden.net" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/1.png" alt="">
+        Bulbapedia
+      </a>
+      <a class="link-btn" href="https://www.serebii.net" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png" alt="">
+        Serebii.net
+      </a>
+      <a class="link-btn" href="https://pokeapi.co" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+        PokéAPI
+      </a>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png" alt=""> batalhas</p>
+      <a class="link-btn" href="https://pokemonshowdown.com" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png" alt="">
+        Pokémon Showdown
+      </a>
+      <a class="link-btn" href="https://www.smogon.com" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png" alt="">
+        Smogon University
+      </a>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt=""> jogos</p>
+      <a class="link-btn" href="https://www.pokemon.com/br" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/25.png" alt="">
+        Pokémon Oficial (BR)
+      </a>
+      <a class="link-btn" href="https://pokemongo.com" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png" alt="">
+        Pokémon GO
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- POKÉDEX -->
+<div class="panel-overlay" id="panel-pokedex">
+  <div class="panel-backdrop"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/1.png" alt="">
+      <span class="panel-title">pokédex</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <p class="body-text" style="color:var(--text-muted);">Meus favoritos de cada geração!</p>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png" alt=""> gen I — kanto</p>
+      <div class="poke-grid">
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" alt="">
+          <div class="poke-num">#006</div>
+          <div class="poke-name">Charizard</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span><span class="type-badge tvo">VÔO</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/25.png" alt="">
+          <div class="poke-num">#025</div>
+          <div class="poke-name">Pikachu</div>
+          <div class="poke-types"><span class="type-badge te">ELÉT.</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" alt="">
+          <div class="poke-num">#131</div>
+          <div class="poke-name">Lapras</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span><span class="type-badge tic">GELO</span></div>
+        </div>
+      </div>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png" alt=""> gen II — johto</p>
+      <div class="poke-grid">
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png" alt="">
+          <div class="poke-num">#249</div>
+          <div class="poke-name">Lugia</div>
+          <div class="poke-types"><span class="type-badge tps">PSÍQ.</span><span class="type-badge tvo">VÔO</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png" alt="">
+          <div class="poke-num">#196</div>
+          <div class="poke-name">Espeon</div>
+          <div class="poke-types"><span class="type-badge tps">PSÍQ.</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png" alt="">
+          <div class="poke-num">#197</div>
+          <div class="poke-name">Umbreon</div>
+          <div class="poke-types"><span class="type-badge tdk">SOMBR.</span></div>
+        </div>
+      </div>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png" alt=""> gen III — hoenn</p>
+      <div class="poke-grid">
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png" alt="">
+          <div class="poke-num">#384</div>
+          <div class="poke-name">Rayquaza</div>
+          <div class="poke-types"><span class="type-badge tdr">DRAG.</span><span class="type-badge tvo">VÔO</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/330.png" alt="">
+          <div class="poke-num">#330</div>
+          <div class="poke-name">Flygon</div>
+          <div class="poke-types"><span class="type-badge tdr">DRAG.</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/302.png" alt="">
+          <div class="poke-num">#302</div>
+          <div class="poke-name">Sableye</div>
+          <div class="poke-types"><span class="type-badge tgh">FANT.</span><span class="type-badge tdk">SOMBR.</span></div>
+        </div>
+      </div>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nugget.png" alt=""> gen IV — sinnoh</p>
+      <div class="poke-grid">
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png" alt="">
+          <div class="poke-num">#448</div>
+          <div class="poke-name">Lucario</div>
+          <div class="poke-types"><span class="type-badge tft">LUT.</span><span class="type-badge tst">AÇO</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png" alt="">
+          <div class="poke-num">#445</div>
+          <div class="poke-name">Garchomp</div>
+          <div class="poke-types"><span class="type-badge tdr">DRAG.</span></div>
+        </div>
+        <div class="poke-card">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/442.png" alt="">
+          <div class="poke-num">#442</div>
+          <div class="poke-name">Spiritomb</div>
+          <div class="poke-types"><span class="type-badge tgh">FANT.</span><span class="type-badge tdk">SOMBR.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="panel-overlay" id="panel-faq">
+  <div class="panel-backdrop"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/54.png" alt="">
+      <span class="panel-title">faq</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="faq-item">
+        <p class="faq-q">Qual é o seu Pokémon favorito?</p>
+        <p class="faq-a">Difícil escolher um só! Mas se precisar... Charizard. Um clássico que nunca envelhece! 🔥</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Qual geração é a melhor?</p>
+        <p class="faq-a">Johto (Gen II) tem um lugar especial no coração. Gold e Silver foram revolucionários — dois mundos num cartão só!</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Você joga competitivo?</p>
+        <p class="faq-a">Sim! Uso o Pokémon Showdown para batalhas online. Ainda aprendendo muito sobre composições e estratégias de time.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Pokémon GO ainda vale a pena?</p>
+        <p class="faq-a">Com certeza! Em 2016 foi impossível resistir e ainda jogo hoje. As Raids são ótimas para lendários shiny. 📱</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Anime ou Games?</p>
+        <p class="faq-a">Cresci com o anime, mas os games são o coração da franquia. Os Mystery Dungeon têm histórias incríveis!</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Já fez shiny hunting?</p>
+        <p class="faq-a">Sim! Meu favorito foi um Shiny Ralts após 3 dias de chain. O verde brilhante é simplesmente perfeito! ✨</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Qual trilha sonora é a melhor?</p>
+        <p class="faq-a">Johto (HG/SS) é inesquecível. Mas Route 1 de Kanto ainda me faz sentir aquela emoção do primeiro jogo. 🎵</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTATO -->
+<div class="panel-overlay" id="panel-contato">
+  <div class="panel-backdrop"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/94.png" alt="">
+      <span class="panel-title">contato</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="contact-box">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif" alt="Gengar">
+        <p class="body-text">Quer trocar batalhas, discutir teorias ou simplesmente falar sobre Pokémon? Manda mensagem!</p>
+        <a href="mailto:treinador@pokemon.com.br" class="contact-btn">enviar email! <img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/escape-rope.png" alt=""></a>
+      </div>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt=""> encontre-me nos jogos</p>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/800.png" alt="">
+        <div class="dl-info">
+          <strong>Nintendo Switch</strong>
+          <span>SW-XXXX-XXXX-XXXX</span>
+        </div>
+      </div>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png" alt="">
+        <div class="dl-info">
+          <strong>Pokémon GO</strong>
+          <span>Trainer Code: 0000 0000 0000</span>
+        </div>
+      </div>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+        <div class="dl-info">
+          <strong>Showdown</strong>
+          <span>@treinador_kanto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXTRAS -->
+<div class="panel-overlay" id="panel-extras">
+  <div class="panel-backdrop"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/133.png" alt="">
+      <span class="panel-title">extras</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <p class="body-text" style="color:var(--text-muted); margin-bottom:6px;">Ferramentas e recursos que uso e recomendo!</p>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png" alt=""> ferramentas</p>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
+        <div class="dl-info">
+          <strong>PokéAPI</strong>
+          <span>API gratuita com todos os dados Pokémon</span>
+        </div>
+      </div>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png" alt="">
+        <div class="dl-info">
+          <strong>Sprites PokeAPI</strong>
+          <span>Repositório público de sprites no GitHub</span>
+        </div>
+      </div>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png" alt="">
+        <div class="dl-info">
+          <strong>PKHeX</strong>
+          <span>Editor de save para jogos Pokémon</span>
+        </div>
+      </div>
+
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-flute.png" alt=""> músicas favoritas do jogo</p>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/440.png" alt="">
+        <div class="dl-info">
+          <strong>Route 1 — Kanto</strong>
+          <span>Pokémon Red/Blue (1996) — nostalgia pura</span>
+        </div>
+      </div>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/175.png" alt="">
+        <div class="dl-info">
+          <strong>Pokémon Center</strong>
+          <span>A mais reconfortante do universo</span>
+        </div>
+      </div>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png" alt="">
+        <div class="dl-info">
+          <strong>Ecruteak City</strong>
+          <span>Pokémon Gold/Silver — pura melancolia</span>
+        </div>
+      </div>
+      <div class="dl-item">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png" alt="">
+        <div class="dl-info">
+          <strong>Route 120 — Hoenn</strong>
+          <span>Pokémon Ruby/Sapphire — inesquecível</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+'use strict';
+
+/* ========== STATE ========== */
+let isDark = false;
+let isMuted = true;
+let audioCtx = null;
+
+/* ========== AUDIO ENGINE (SFX only) ========== */
+function ctx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+/* ========== MUSIC PLAYLIST ========== */
+const TRACKS = [
+  { src: 'Audio/Pokemon-Blue-Red-Pokemon-Lab.mp3',         label: 'Pokémon Lab — Kanto' },
+  { src: 'Audio/Pokemon-Center.mp3',                       label: 'Pokémon Center' },
+  { src: 'Audio/Pokemon-Route-101-Remix.mp3',              label: 'Route 101 — Hoenn' },
+  { src: 'Audio/Pokemon-Ruby-Sapphire-Emerald-Oldale.mp3', label: 'Oldale Town — Hoenn' },
+  { src: 'Audio/Pokemon-Ruby-Sapphire-Emerald.mp3',        label: 'Ruby/Sapphire — Hoenn' },
+];
+let trackIdx = -1;
+const bgAudio = new Audio();
+bgAudio.loop = true;
+bgAudio.volume = 0.35;
+
+const trackNameEl = document.getElementById('trackName');
+
+function playNextTrack() {
+  trackIdx = (trackIdx + 1) % TRACKS.length;
+  bgAudio.src = TRACKS[trackIdx].src;
+  trackNameEl.textContent = TRACKS[trackIdx].label;
+  bgAudio.play().catch(() => {});
+}
+
+function stopBgMusic() {
+  bgAudio.pause();
+}
+
+/* Short SFX */
+function sfx(type) {
+  if (isMuted) return;
+  const ac = ctx(), t = ac.currentTime;
+  const o = ac.createOscillator(), g = ac.createGain();
+  o.type = 'square'; o.connect(g); g.connect(ac.destination);
+  if (type === 'open') {
+    o.frequency.setValueAtTime(523,t); o.frequency.setValueAtTime(659,t+0.07); o.frequency.setValueAtTime(784,t+0.14);
+    g.gain.setValueAtTime(0.1,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.32);
+    o.start(t); o.stop(t+0.32);
+  } else if (type === 'close') {
+    o.frequency.setValueAtTime(784,t); o.frequency.setValueAtTime(523,t+0.12);
+    g.gain.setValueAtTime(0.08,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.26);
+    o.start(t); o.stop(t+0.26);
+  } else if (type === 'hover') {
+    o.frequency.value = 880;
+    g.gain.setValueAtTime(0.04,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.07);
+    o.start(t); o.stop(t+0.07);
+  }
+}
+
+/* ========== PANELS ========== */
+let active = null;
+
+function open(id) {
+  if (active) close(false);
+  const p = document.getElementById('panel-' + id);
+  if (!p) return;
+  p.classList.add('open');
+  active = p;
+  document.body.style.overflow = 'hidden';
+  sfx('open');
+}
+
+function close(restore) {
+  if (!active) return;
+  active.classList.remove('open');
+  active = null;
+  if (restore !== false) document.body.style.overflow = '';
+  sfx('close');
+}
+
+/* ========== BIND EVENTS ========== */
+document.querySelectorAll('.nav-card').forEach(c => {
+  const img = c.querySelector('img');
+  if (img) {
+    const gifSrc = img.src
+      .replace('/black-white/', '/black-white/animated/')
+      .replace('.png', '.gif');
+    img.classList.add('sprite-static');
+    const wrap = document.createElement('div');
+    wrap.className = 'sprite-wrap';
+    img.replaceWith(wrap);
+    wrap.appendChild(img);
+    const gif = document.createElement('img');
+    gif.src = gifSrc;
+    gif.alt = img.alt;
+    gif.className = 'sprite-gif';
+    wrap.appendChild(gif);
+  }
+  c.addEventListener('click', () => open(c.dataset.panel));
+  c.addEventListener('mouseenter', () => sfx('hover'));
+});
+
+document.querySelectorAll('.panel-close').forEach(b => b.addEventListener('click', () => close()));
+document.querySelectorAll('.panel-backdrop').forEach(b => b.addEventListener('click', () => close()));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+/* Theme */
+const themeBtn = document.getElementById('themeBtn');
+const themeIcon = document.getElementById('themeIcon');
+const ITEMS = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/';
+themeBtn.addEventListener('click', () => {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  themeIcon.src = isDark ? 'Imagens/lua-pokemon.png' : 'Imagens/sol-icon.png';
+});
+
+/* Sound */
+const soundBtn   = document.getElementById('soundBtn');
+const musicBadge = document.getElementById('musicBadge');
+
+/* ========== PIKACHU MASCOT ========== */
+const mascotEl      = document.getElementById('mascot');
+const pikachuSfx    = new Audio('Audio/pikachu_9.mp3');
+const PIKACHU_NORMAL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif';
+const PIKACHU_HAPPY  = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/25.gif';
+let mascotTimer = null;
+
+function sfxPikaHover() {
+  const ac = ctx(), t = ac.currentTime;
+  [[523, 0], [659, 0.07]].forEach(([freq, delay]) => {
+    const o = ac.createOscillator(), g = ac.createGain(), f = ac.createBiquadFilter();
+    o.type = 'square';
+    o.frequency.value = freq;
+    f.type = 'lowpass'; f.frequency.value = 1600;
+    o.connect(f); f.connect(g); g.connect(ac.destination);
+    g.gain.setValueAtTime(0.045, t + delay);
+    g.gain.exponentialRampToValueAtTime(0.001, t + delay + 0.07);
+    o.start(t + delay); o.stop(t + delay + 0.08);
+  });
+}
+
+mascotEl.addEventListener('mouseenter', sfxPikaHover);
+
+mascotEl.addEventListener('click', () => {
+  pikachuSfx.currentTime = 0;
+  pikachuSfx.play().catch(() => {});
+  mascotEl.src = PIKACHU_HAPPY;
+  clearTimeout(mascotTimer);
+  mascotTimer = setTimeout(() => { mascotEl.src = PIKACHU_NORMAL; }, 3000);
+});
+
+soundBtn.addEventListener('click', () => {
+  isMuted = !isMuted;
+  document.getElementById('soundIcon').src = isMuted ? 'Imagens/sound-off.png' : 'Imagens/sound-on.png';
+  if (isMuted) {
+    stopBgMusic();
+    musicBadge.classList.remove('on');
+  } else {
+    playNextTrack();
+    musicBadge.classList.add('on');
+  }
+});
+</script>
+</body>
+</html>
