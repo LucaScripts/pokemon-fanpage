@@ -14,11 +14,36 @@
 <link rel="manifest" href="favicon/site.webmanifest" />
 </head>
 <body>
+<div id="poke-cursor"></div>
+
+<!-- Pokémon Info Modal -->
+<div id="poke-modal">
+  <div class="poke-modal-bg"></div>
+  <div class="poke-modal-card">
+    <button class="poke-modal-close">✕</button>
+    <div id="poke-modal-content">
+      <div class="poke-modal-loading">carregando...</div>
+    </div>
+  </div>
+</div>
+
+<!-- Game Boy Loader -->
+<div id="gb-loader">
+  <div class="gb-body">
+    <div class="gb-screen">
+      <div class="gb-logo">GAME BOY</div>
+      <img class="gb-pika" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="Pikachu">
+      <div class="gb-press">PRESS START</div>
+    </div>
+    <div class="gb-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
 
 <!-- Controls -->
 <div class="top-bar">
   <button class="ctrl-btn" id="themeBtn" title="Alternar tema"><img class="item-icon" id="themeIcon" src="Imagens/sol-icon.png" alt="tema"></button>
-  <button class="ctrl-btn" id="soundBtn" title="Ligar/Desligar música"><img class="item-icon" id="soundIcon" src="Imagens/sound-off.png" alt="som"></button>
+  <button class="ctrl-btn" id="soundBtn" title="Click: muta | Scroll: volume"><img class="item-icon" id="soundIcon" src="Imagens/sound-off.png" alt="som"></button>
+  <span class="vol-tip" id="volTip"></span>
 </div>
 
 <!-- Music badge -->
@@ -36,7 +61,7 @@
 
   <div class="cards-grid">
     <div class="nav-card" data-panel="sobre">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/25.png" alt="Pikachu">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/6.png" alt="Charizard">
       <span>sobre</span>
     </div>
     <div class="nav-card" data-panel="links">
@@ -68,16 +93,16 @@
     </svg>
     <div class="footer-area">
       <div class="social-links">
-        <a class="social-btn" href="#" title="X / Twitter" target="_blank" rel="noopener">
+        <a class="social-btn social-btn--inactive" title="X / Twitter">
           <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a class="social-btn" href="#" title="Instagram" target="_blank" rel="noopener">
+        <a class="social-btn" href="https://www.instagram.com/lucasdiasil/" title="Instagram" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
         </a>
-        <a class="social-btn" href="#" title="YouTube" target="_blank" rel="noopener">
+        <a class="social-btn social-btn--inactive" title="YouTube">
           <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
-        <a class="social-btn" href="#" title="GitHub" target="_blank" rel="noopener">
+        <a class="social-btn" href="https://github.com/LucaScripts" title="GitHub" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         </a>
       </div>
@@ -101,13 +126,13 @@
   <div class="panel-backdrop"></div>
   <div class="panel">
     <div class="panel-header">
-      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/25.png" alt="">
+      <img class="panel-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/6.png" alt="">
       <span class="panel-title">sobre</span>
       <button class="panel-close">✕</button>
     </div>
     <div class="panel-body">
       <div class="trainer-card">
-        <img class="t-avatar" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="">
+        <img class="t-avatar" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/6.gif" alt="">
         <div class="t-info">
           <h3>TREINADOR POKÉMON</h3>
           <p><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/town-map.png" alt=""> Região: Kanto</p>
@@ -224,203 +249,239 @@
     <div class="panel-body">
       <p class="body-text" style="color:var(--text-muted);">Meus favoritos de cada geração!</p>
 
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png" alt=""> gen I — kanto</p>
-      <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" alt="">
-          <div class="poke-num">#006</div>
-          <div class="poke-name">Charizard</div>
-          <div class="poke-types"><span class="type-badge tf">FOGO</span><span class="type-badge tvo">VÔO</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/25.png" alt="">
-          <div class="poke-num">#025</div>
-          <div class="poke-name">Pikachu</div>
-          <div class="poke-types"><span class="type-badge te">ELÉT.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" alt="">
-          <div class="poke-num">#131</div>
-          <div class="poke-name">Lapras</div>
-          <div class="poke-types"><span class="type-badge tw">ÁGUA</span><span class="type-badge tic">GELO</span></div>
-        </div>
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png" alt=""> gen I — kanto</p>
+        <button class="ver-mais-btn" onclick="toggleGen(1,this)">Ver Mais ▼</button>
       </div>
-
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png" alt=""> gen II — johto</p>
       <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png" alt="">
-          <div class="poke-num">#249</div>
-          <div class="poke-name">Lugia</div>
-          <div class="poke-types"><span class="type-badge tps">PSÍQ.</span><span class="type-badge tvo">VÔO</span></div>
+        <div class="poke-card" data-pokeid="1">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/1.png" alt="">
+          <div class="poke-num">#001</div>
+          <div class="poke-name">Bulbasaur</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span><span class="type-badge tpo">VENEN.</span></div>
         </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png" alt="">
-          <div class="poke-num">#196</div>
-          <div class="poke-name">Espeon</div>
-          <div class="poke-types"><span class="type-badge tps">PSÍQ.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png" alt="">
-          <div class="poke-num">#197</div>
-          <div class="poke-name">Umbreon</div>
-          <div class="poke-types"><span class="type-badge tdk">SOMBR.</span></div>
-        </div>
-      </div>
-
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png" alt=""> gen III — hoenn</p>
-      <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png" alt="">
-          <div class="poke-num">#384</div>
-          <div class="poke-name">Rayquaza</div>
-          <div class="poke-types"><span class="type-badge tdr">DRAG.</span><span class="type-badge tvo">VÔO</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/330.png" alt="">
-          <div class="poke-num">#330</div>
-          <div class="poke-name">Flygon</div>
-          <div class="poke-types"><span class="type-badge tdr">DRAG.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/302.png" alt="">
-          <div class="poke-num">#302</div>
-          <div class="poke-name">Sableye</div>
-          <div class="poke-types"><span class="type-badge tgh">FANT.</span><span class="type-badge tdk">SOMBR.</span></div>
-        </div>
-      </div>
-
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nugget.png" alt=""> gen IV — sinnoh</p>
-      <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png" alt="">
-          <div class="poke-num">#448</div>
-          <div class="poke-name">Lucario</div>
-          <div class="poke-types"><span class="type-badge tft">LUT.</span><span class="type-badge tst">AÇO</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png" alt="">
-          <div class="poke-num">#445</div>
-          <div class="poke-name">Garchomp</div>
-          <div class="poke-types"><span class="type-badge tdr">DRAG.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/442.png" alt="">
-          <div class="poke-num">#442</div>
-          <div class="poke-name">Spiritomb</div>
-          <div class="poke-types"><span class="type-badge tgh">FANT.</span><span class="type-badge tdk">SOMBR.</span></div>
-        </div>
-      </div>
-
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png" alt=""> gen V — unova</p>
-      <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/644.png" alt="">
-          <div class="poke-num">#644</div>
-          <div class="poke-name">Zekrom</div>
-          <div class="poke-types"><span class="type-badge tdr">DRAG.</span><span class="type-badge te">ELÉT.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/571.png" alt="">
-          <div class="poke-num">#571</div>
-          <div class="poke-name">Zoroark</div>
-          <div class="poke-types"><span class="type-badge tdk">SOMBR.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png" alt="">
-          <div class="poke-num">#635</div>
-          <div class="poke-name">Hydreigon</div>
-          <div class="poke-types"><span class="type-badge tdk">SOMBR.</span><span class="type-badge tdr">DRAG.</span></div>
-        </div>
-      </div>
-
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png" alt=""> gen VI — kalos</p>
-      <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png" alt="">
-          <div class="poke-num">#658</div>
-          <div class="poke-name">Greninja</div>
-          <div class="poke-types"><span class="type-badge tw">ÁGUA</span><span class="type-badge tdk">SOMBR.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png" alt="">
-          <div class="poke-num">#700</div>
-          <div class="poke-name">Sylveon</div>
-          <div class="poke-types"><span class="type-badge tfy">FADA</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png" alt="">
-          <div class="poke-num">#706</div>
-          <div class="poke-name">Goodra</div>
-          <div class="poke-types"><span class="type-badge tdr">DRAG.</span></div>
-        </div>
-      </div>
-
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png" alt=""> gen VII — alola</p>
-      <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/778.png" alt="">
-          <div class="poke-num">#778</div>
-          <div class="poke-name">Mimikyu</div>
-          <div class="poke-types"><span class="type-badge tgh">FANT.</span><span class="type-badge tfy">FADA</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/792.png" alt="">
-          <div class="poke-num">#792</div>
-          <div class="poke-name">Lunala</div>
-          <div class="poke-types"><span class="type-badge tps">PSÍQ.</span><span class="type-badge tgh">FANT.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/724.png" alt="">
-          <div class="poke-num">#724</div>
-          <div class="poke-name">Decidueye</div>
-          <div class="poke-types"><span class="type-badge tg">GRAMA</span><span class="type-badge tgh">FANT.</span></div>
-        </div>
-      </div>
-
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png" alt=""> gen VIII — galar</p>
-      <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/887.png" alt="">
-          <div class="poke-num">#887</div>
-          <div class="poke-name">Dragapult</div>
-          <div class="poke-types"><span class="type-badge tdr">DRAG.</span><span class="type-badge tgh">FANT.</span></div>
-        </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/815.png" alt="">
-          <div class="poke-num">#815</div>
-          <div class="poke-name">Cinderace</div>
+        <div class="poke-card" data-pokeid="4">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/4.png" alt="">
+          <div class="poke-num">#004</div>
+          <div class="poke-name">Charmander</div>
           <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
         </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/888.png" alt="">
-          <div class="poke-num">#888</div>
-          <div class="poke-name">Zacian</div>
-          <div class="poke-types"><span class="type-badge tfy">FADA</span></div>
+        <div class="poke-card" data-pokeid="7">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/7.png" alt="">
+          <div class="poke-num">#007</div>
+          <div class="poke-name">Squirtle</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
         </div>
       </div>
+      <div class="poke-grid-expanded" id="gen-exp-1"></div>
 
-      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png" alt=""> gen IX — paldea</p>
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png" alt=""> gen II — johto</p>
+        <button class="ver-mais-btn" onclick="toggleGen(2,this)">Ver Mais ▼</button>
+      </div>
       <div class="poke-grid">
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1007.png" alt="">
-          <div class="poke-num">#1007</div>
-          <div class="poke-name">Koraidon</div>
-          <div class="poke-types"><span class="type-badge tft">LUT.</span><span class="type-badge tdr">DRAG.</span></div>
+        <div class="poke-card" data-pokeid="152">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/152.png" alt="">
+          <div class="poke-num">#152</div>
+          <div class="poke-name">Chikorita</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span></div>
         </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1008.png" alt="">
-          <div class="poke-num">#1008</div>
-          <div class="poke-name">Miraidon</div>
-          <div class="poke-types"><span class="type-badge te">ELÉT.</span><span class="type-badge tdr">DRAG.</span></div>
+        <div class="poke-card" data-pokeid="155">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/155.png" alt="">
+          <div class="poke-num">#155</div>
+          <div class="poke-name">Cyndaquil</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
         </div>
-        <div class="poke-card">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/911.png" alt="">
-          <div class="poke-num">#911</div>
-          <div class="poke-name">Skeledirge</div>
-          <div class="poke-types"><span class="type-badge tf">FOGO</span><span class="type-badge tgh">FANT.</span></div>
+        <div class="poke-card" data-pokeid="158">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/158.png" alt="">
+          <div class="poke-num">#158</div>
+          <div class="poke-name">Totodile</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
         </div>
       </div>
+      <div class="poke-grid-expanded" id="gen-exp-2"></div>
+
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png" alt=""> gen III — hoenn</p>
+        <button class="ver-mais-btn" onclick="toggleGen(3,this)">Ver Mais ▼</button>
+      </div>
+      <div class="poke-grid">
+        <div class="poke-card" data-pokeid="252">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/252.png" alt="">
+          <div class="poke-num">#252</div>
+          <div class="poke-name">Treecko</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="255">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/255.png" alt="">
+          <div class="poke-num">#255</div>
+          <div class="poke-name">Torchic</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="258">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/258.png" alt="">
+          <div class="poke-num">#258</div>
+          <div class="poke-name">Mudkip</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
+        </div>
+      </div>
+      <div class="poke-grid-expanded" id="gen-exp-3"></div>
+
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nugget.png" alt=""> gen IV — sinnoh</p>
+        <button class="ver-mais-btn" onclick="toggleGen(4,this)">Ver Mais ▼</button>
+      </div>
+      <div class="poke-grid">
+        <div class="poke-card" data-pokeid="387">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/387.png" alt="">
+          <div class="poke-num">#387</div>
+          <div class="poke-name">Turtwig</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="390">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/390.png" alt="">
+          <div class="poke-num">#390</div>
+          <div class="poke-name">Chimchar</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="393">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/393.png" alt="">
+          <div class="poke-num">#393</div>
+          <div class="poke-name">Piplup</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
+        </div>
+      </div>
+      <div class="poke-grid-expanded" id="gen-exp-4"></div>
+
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png" alt=""> gen V — unova</p>
+        <button class="ver-mais-btn" onclick="toggleGen(5,this)">Ver Mais ▼</button>
+      </div>
+      <div class="poke-grid">
+        <div class="poke-card" data-pokeid="495">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/495.png" alt="">
+          <div class="poke-num">#495</div>
+          <div class="poke-name">Snivy</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="498">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/498.png" alt="">
+          <div class="poke-num">#498</div>
+          <div class="poke-name">Tepig</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="501">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/501.png" alt="">
+          <div class="poke-num">#501</div>
+          <div class="poke-name">Oshawott</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
+        </div>
+      </div>
+      <div class="poke-grid-expanded" id="gen-exp-5"></div>
+
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png" alt=""> gen VI — kalos</p>
+        <button class="ver-mais-btn" onclick="toggleGen(6,this)">Ver Mais ▼</button>
+      </div>
+      <div class="poke-grid">
+        <div class="poke-card" data-pokeid="650">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png" alt="">
+          <div class="poke-num">#650</div>
+          <div class="poke-name">Chespin</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="653">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/653.png" alt="">
+          <div class="poke-num">#653</div>
+          <div class="poke-name">Fennekin</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="656">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/656.png" alt="">
+          <div class="poke-num">#656</div>
+          <div class="poke-name">Froakie</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
+        </div>
+      </div>
+      <div class="poke-grid-expanded" id="gen-exp-6"></div>
+
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png" alt=""> gen VII — alola</p>
+        <button class="ver-mais-btn" onclick="toggleGen(7,this)">Ver Mais ▼</button>
+      </div>
+      <div class="poke-grid">
+        <div class="poke-card" data-pokeid="722">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/722.png" alt="">
+          <div class="poke-num">#722</div>
+          <div class="poke-name">Rowlet</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span><span class="type-badge tvo">VÔO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="725">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/725.png" alt="">
+          <div class="poke-num">#725</div>
+          <div class="poke-name">Litten</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="728">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/728.png" alt="">
+          <div class="poke-num">#728</div>
+          <div class="poke-name">Popplio</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
+        </div>
+      </div>
+      <div class="poke-grid-expanded" id="gen-exp-7"></div>
+
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png" alt=""> gen VIII — galar</p>
+        <button class="ver-mais-btn" onclick="toggleGen(8,this)">Ver Mais ▼</button>
+      </div>
+      <div class="poke-grid">
+        <div class="poke-card" data-pokeid="810">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png" alt="">
+          <div class="poke-num">#810</div>
+          <div class="poke-name">Grookey</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="813">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/813.png" alt="">
+          <div class="poke-num">#813</div>
+          <div class="poke-name">Scorbunny</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="816">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/816.png" alt="">
+          <div class="poke-num">#816</div>
+          <div class="poke-name">Sobble</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
+        </div>
+      </div>
+      <div class="poke-grid-expanded" id="gen-exp-8"></div>
+
+      <div class="gen-row-header">
+        <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png" alt=""> gen IX — paldea</p>
+        <button class="ver-mais-btn" onclick="toggleGen(9,this)">Ver Mais ▼</button>
+      </div>
+      <div class="poke-grid">
+        <div class="poke-card" data-pokeid="906">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/906.png" alt="">
+          <div class="poke-num">#906</div>
+          <div class="poke-name">Sprigatito</div>
+          <div class="poke-types"><span class="type-badge tg">GRAMA</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="909">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png" alt="">
+          <div class="poke-num">#909</div>
+          <div class="poke-name">Fuecoco</div>
+          <div class="poke-types"><span class="type-badge tf">FOGO</span></div>
+        </div>
+        <div class="poke-card" data-pokeid="912">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/912.png" alt="">
+          <div class="poke-num">#912</div>
+          <div class="poke-name">Quaxly</div>
+          <div class="poke-types"><span class="type-badge tw">ÁGUA</span></div>
+        </div>
+      </div>
+      <div class="poke-grid-expanded" id="gen-exp-9"></div>
     </div>
   </div>
 </div>
@@ -480,7 +541,7 @@
       <div class="contact-box">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif" alt="Gengar">
         <p class="body-text">Quer trocar batalhas, discutir teorias ou simplesmente falar sobre Pokémon? Manda mensagem!</p>
-        <a href="mailto:treinador@pokemon.com.br" class="contact-btn">enviar email! <img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/escape-rope.png" alt=""></a>
+        <a href="mailto:lucasdiasil@hotmail.com" class="contact-btn" onclick="playBooster()">enviar email! <img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/escape-rope.png" alt=""></a>
       </div>
 
       <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt=""> encontre-me nos jogos</p>
@@ -495,8 +556,12 @@
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png" alt="">
         <div class="dl-info">
           <strong>Pokémon GO</strong>
-          <span>Trainer Code: 0000 0000 0000</span>
+          <span>Luscaa12 · 1523 7618 7134</span>
         </div>
+      </div>
+      <div class="qr-box">
+        <p class="qr-label">QR Code Pokémon GO</p>
+        <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=152376187134&bgcolor=f0fff0&color=0f380f&margin=10" alt="QR Code Pokémon GO">
       </div>
       <div class="dl-item">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
@@ -521,28 +586,112 @@
     <div class="panel-body">
       <p class="body-text" style="color:var(--text-muted); margin-bottom:6px;">Ferramentas e recursos que uso e recomendo!</p>
 
+      <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt=""> melhores iniciais por região</p>
+      <p class="body-text" style="color:var(--text-muted); font-size:11px; margin-bottom:10px;">Na minha opinião:</p>
+
+      <div class="starter-pick" data-pokeid="4">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/4.png" alt="Charmander">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Kanto — Gen I <span class="type-badge tf">FOGO</span></div>
+          <strong>Charmander</strong>
+          <p>Um clássico. Evolui para Charizard, ícone da franquia.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="158">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/158.png" alt="Totodile">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Johto — Gen II <span class="type-badge tw">ÁGUA</span></div>
+          <strong>Totodile</strong>
+          <p>Evolui para Feraligatr. Bom ataque físico e cobrindo ótimas ameaças de Johto.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="258">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/258.png" alt="Mudkip">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Hoenn — Gen III <span class="type-badge tw">ÁGUA</span></div>
+          <strong>Mudkip</strong>
+          <p>Evolui para Swampert (Água/Terra). Só tem uma fraqueza e é fortíssimo.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="390">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/390.png" alt="Chimchar">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Sinnoh — Gen IV <span class="type-badge tf">FOGO</span></div>
+          <strong>Chimchar</strong>
+          <p>Evolui para Infernape (Fogo/Luta). Velocidade e ataque elevados.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="498">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/498.png" alt="Tepig">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Unova — Gen V <span class="type-badge tf">FOGO</span></div>
+          <strong>Tepig</strong>
+          <p>Evolui para Emboar. Vantagem forte contra líderes iniciais e moveset de ataque muito sólido.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="656">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/656.png" alt="Froakie">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Kalos — Gen VI <span class="type-badge tw">ÁGUA</span></div>
+          <strong>Froakie</strong>
+          <p>Evolui para Greninja. Com Protean, muda de tipo a cada ataque garantindo STAB em quase tudo.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="728">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/728.png" alt="Popplio">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Alola — Gen VII <span class="type-badge tw">ÁGUA</span></div>
+          <strong>Popplio</strong>
+          <p>Evolui para Primarina (Água/Fada). Excelente defesa especial e alto Ataque Especial.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="810">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/810.png" alt="Grookey">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Galar — Gen VIII <span class="type-badge tg">GRAMA</span></div>
+          <strong>Grookey → Rillaboom</strong>
+          <p>Grassy Surge prioriza ataques de grama e cura o time. Ótimos status de ataque físico.</p>
+        </div>
+      </div>
+
+      <div class="starter-pick" data-pokeid="906">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/906.png" alt="Sprigatito">
+        <div class="starter-pick-info">
+          <div class="starter-pick-region">Paldea — Gen IX <span class="type-badge tg">GRAMA</span></div>
+          <strong>Sprigatito</strong>
+          <p>O gatinho de grama de Paldea. Estilo, carisma e muita personalidade.</p>
+        </div>
+      </div>
+
       <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png" alt=""> ferramentas</p>
-      <div class="dl-item">
+      <a class="dl-item dl-item--link" href="https://pokeapi.co" target="_blank" rel="noopener">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="">
         <div class="dl-info">
           <strong>PokéAPI</strong>
           <span>API gratuita com todos os dados Pokémon</span>
         </div>
-      </div>
-      <div class="dl-item">
+      </a>
+      <a class="dl-item dl-item--link" href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png" alt="">
         <div class="dl-info">
           <strong>Sprites PokeAPI</strong>
           <span>Repositório público de sprites no GitHub</span>
         </div>
-      </div>
-      <div class="dl-item">
+      </a>
+      <a class="dl-item dl-item--link" href="https://github.com/kwsch/PKHeX" target="_blank" rel="noopener">
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png" alt="">
         <div class="dl-info">
           <strong>PKHeX</strong>
           <span>Editor de save para jogos Pokémon</span>
         </div>
-      </div>
+      </a>
 
       <p class="sec-label"><img class="item-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-flute.png" alt=""> músicas favoritas do jogo</p>
       <div class="dl-item">
@@ -581,9 +730,38 @@
 <script>
 'use strict';
 
+/* ── Custom cursor ── */
+(function(){
+  const el = document.getElementById('poke-cursor');
+  let cx = -100, cy = -100;
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    el.style.left = cx + 'px';
+    el.style.top  = cy + 'px';
+  });
+  document.addEventListener('mouseleave', () => { el.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { el.style.opacity = '1'; });
+})();
+
+/* ========== GAME BOY LOADER ========== */
+(function() {
+  const loader = document.getElementById('gb-loader');
+  const startupSnd = new Audio('Audio/nintendo-game-boy-startup.mp3');
+  function dismiss() {
+    loader.classList.add('hide');
+    setTimeout(() => loader.remove(), 650);
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    startupSnd.play().catch(() => {});
+    setTimeout(dismiss, 3200);
+  });
+  loader.addEventListener('click', dismiss);
+})();
+
 /* ========== STATE ========== */
 let isDark = false;
 let isMuted = true;
+let bgVolume = 0.35;
 let audioCtx = null;
 
 /* ========== AUDIO ENGINE (SFX only) ========== */
@@ -604,7 +782,7 @@ const TRACKS = [
 let trackIdx = -1;
 const bgAudio = new Audio();
 bgAudio.loop = true;
-bgAudio.volume = 0.35;
+bgAudio.volume = bgVolume;
 
 const trackNameEl = document.getElementById('trackName');
 
@@ -691,9 +869,11 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 const plinkSfx = new Audio('Audio/Pokémon-plink.mp3');
 const gameBoySfx = new Audio('Audio/nintendo-game-boy-startup.mp3');
 const itemFoundSfx = new Audio('Audio/pokemon-red_blue_yellow-item-found-sound-effect.mp3');
+const boosterSfx = new Audio('Audio/pokemon-tcg-pocket-you-have-a-booster.mp3');
 function playPlink() { plinkSfx.currentTime = 0; plinkSfx.play().catch(() => {}); }
 function playGameBoy() { gameBoySfx.currentTime = 0; gameBoySfx.play().catch(() => {}); }
 function playItemFound() { itemFoundSfx.currentTime = 0; itemFoundSfx.play().catch(() => {}); }
+function playBooster() { boosterSfx.currentTime = 0; boosterSfx.play().catch(() => {}); }
 
 /* Theme */
 const themeBtn = document.getElementById('themeBtn');
@@ -741,22 +921,223 @@ mascotEl.addEventListener('click', () => {
   mascotTimer = setTimeout(() => { mascotEl.src = PIKACHU_NORMAL; }, 3000);
 });
 
+const volTip = document.getElementById('volTip');
+let volTipTimer = null;
+function showVolTip() {
+  volTip.textContent = isMuted ? '🔇 mudo' : Math.round(bgVolume * 100) + '%';
+  volTip.classList.add('show');
+  clearTimeout(volTipTimer);
+  volTipTimer = setTimeout(() => volTip.classList.remove('show'), 1200);
+}
+function updateSoundIcon() {
+  document.getElementById('soundIcon').src = isMuted ? 'Imagens/sound-off.png' : 'Imagens/sound-on.png';
+}
+
 soundBtn.addEventListener('click', () => {
   playGameBoy();
   isMuted = !isMuted;
-  document.getElementById('soundIcon').src = isMuted ? 'Imagens/sound-off.png' : 'Imagens/sound-on.png';
+  updateSoundIcon();
   if (isMuted) {
     stopBgMusic();
     musicBadge.classList.remove('on');
   } else {
+    bgAudio.volume = bgVolume;
     playNextTrack();
     musicBadge.classList.add('on');
   }
+  showVolTip();
 });
+
+soundBtn.addEventListener('wheel', e => {
+  e.preventDefault();
+  bgVolume = Math.min(1, Math.max(0, bgVolume + (e.deltaY < 0 ? 0.1 : -0.1)));
+  bgVolume = Math.round(bgVolume * 10) / 10;
+  if (!isMuted) bgAudio.volume = bgVolume;
+  showVolTip();
+}, { passive: false });
 
 document.querySelectorAll('.social-btn').forEach(btn => {
   btn.addEventListener('click', playItemFound);
 });
+document.querySelectorAll('.link-btn, .dl-item--link').forEach(a => {
+  a.addEventListener('click', () => sfx('hover'));
+});
+
+/* ========== POKÉMON INFO MODAL ========== */
+const pokeModal    = document.getElementById('poke-modal');
+const pokeContent  = document.getElementById('poke-modal-content');
+
+const TYPE_BADGE = {
+  fire:'tf', water:'tw', electric:'te', grass:'tg', psychic:'tps',
+  ghost:'tgh', dragon:'tdr', dark:'tdk', normal:'tno', fairy:'tfy',
+  fighting:'tft', steel:'tst', ice:'tic', flying:'tvo',
+  poison:'tpo', ground:'tgr', rock:'trc', bug:'tb'
+};
+const TYPE_LABEL = {
+  fire:'FOGO', water:'ÁGUA', electric:'ELÉT.', grass:'GRAMA', psychic:'PSÍQ.',
+  ghost:'FANT.', dragon:'DRAG.', dark:'SOMBR.', normal:'NORMAL', fairy:'FADA',
+  fighting:'LUT.', steel:'AÇO', ice:'GELO', flying:'VÔO',
+  poison:'VENEN.', ground:'TERRA', rock:'PEDRA', bug:'INSETO'
+};
+const FAV_IDS = new Set([4, 158, 258, 390, 498, 656, 728, 810, 906]);
+const GEN_COUNTS = { 1:151, 2:100, 3:135, 4:107, 5:156, 6:72, 7:88, 8:96, 9:120 };
+document.querySelectorAll('.ver-mais-btn').forEach(btn => {
+  const n = parseInt(btn.getAttribute('onclick').match(/\d+/)[0]);
+  const span = document.createElement('span');
+  span.className = 'gen-count';
+  span.textContent = GEN_COUNTS[n] + ' pokémon';
+  btn.before(span);
+});
+const TYPE_COLOR = {
+  fire:'#F08030', water:'#6890F0', electric:'#c8a800', grass:'#78C850',
+  psychic:'#F85888', ghost:'#705898', dragon:'#7038F8', dark:'#705848',
+  normal:'#A8A878', fairy:'#c06080', fighting:'#C03028', steel:'#888aaa',
+  ice:'#5ab8b8', flying:'#A890F0', poison:'#A040A0', ground:'#c8a020',
+  rock:'#B8A038', bug:'#A8B820'
+};
+const STAT_LABELS = {
+  hp:'HP', attack:'ATK', defense:'DEF',
+  'special-attack':'SP.ATK', 'special-defense':'SP.DEF', speed:'SPD'
+};
+
+function statColor(v) { return v >= 100 ? '#78C850' : v >= 60 ? '#F8D030' : '#F08030'; }
+
+function closePokeModal() { sfx('hover'); pokeModal.classList.remove('open'); }
+pokeModal.querySelector('.poke-modal-bg').addEventListener('click', closePokeModal);
+pokeModal.querySelector('.poke-modal-close').addEventListener('click', closePokeModal);
+
+async function showPokeModal(id) {
+  sfx('hover');
+  pokeContent.innerHTML = '<div class="poke-modal-loading">carregando...</div>';
+  pokeModal.classList.add('open');
+  try {
+    const [pd, sd] = await Promise.all([
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(r => r.json()),
+      fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then(r => r.json())
+    ]);
+    const name   = pd.name.split('-').map(w => w[0].toUpperCase()+w.slice(1)).join(' ');
+    const num    = String(pd.id).padStart(3,'0');
+    const genVGif  = pd.sprites?.versions?.['generation-v']?.['black-white']?.animated?.front_default;
+    const showdownGif = `https://play.pokemonshowdown.com/sprites/gen5ani/${pd.name}.gif`;
+    const showdownAni = `https://play.pokemonshowdown.com/sprites/ani/${pd.name}.gif`;
+    const fallbackImg = pd.sprites?.other?.['official-artwork']?.front_default || pd.sprites?.front_default;
+    const sprite = genVGif || showdownGif;
+    const types  = pd.types.map(t => t.type.name);
+    const color  = TYPE_COLOR[types[0]] || '#CC0000';
+    const badges = types.map(t => `<span class="type-badge ${TYPE_BADGE[t]||'tno'}">${t.toUpperCase()}</span>`).join('');
+    const flavor = (sd.flavor_text_entries.find(e=>e.language.name==='pt-BR')
+                 || sd.flavor_text_entries.find(e=>e.language.name==='en'))
+                 ?.flavor_text.replace(/[\f\n]/g,' ') || '';
+    const abilities = pd.abilities.map(a => {
+      const n = a.ability.name.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+      return a.is_hidden ? `${n} ✦` : n;
+    }).join(' · ');
+    const stats = pd.stats.map(s => {
+      const v = s.base_stat, pct = Math.min(100,(v/255)*100);
+      return `<div class="poke-stat-row">
+        <span class="poke-stat-name">${STAT_LABELS[s.stat.name]||s.stat.name}</span>
+        <span class="poke-stat-val">${v}</span>
+        <div class="poke-stat-bar"><div style="width:${pct}%;background:${statColor(v)}"></div></div>
+      </div>`;
+    }).join('');
+
+    pokeContent.innerHTML = `
+      <div class="poke-modal-header" style="background:linear-gradient(135deg,${color}dd,${color}88)">
+        <img class="poke-modal-sprite" src="${sprite}" alt="${name}" onerror="if(this.src.includes('gen5ani')){this.src='${showdownAni}';}else{this.onerror=null;this.src='${fallbackImg}';}">
+        <div>
+          <div class="poke-modal-num">#${num}</div>
+          <div class="poke-modal-name">${name}</div>
+          <div class="poke-modal-types">${badges}</div>
+        </div>
+      </div>
+      <div class="poke-modal-body">
+        ${flavor ? `<p class="poke-modal-flavor">"${flavor}"</p>` : ''}
+        <div class="poke-modal-meta">
+          <span>📏 ${(pd.height/10).toFixed(1)} m</span>
+          <span>⚖️ ${(pd.weight/10).toFixed(1)} kg</span>
+        </div>
+        <p class="poke-modal-abilities"><strong>Habilidades:</strong> ${abilities}</p>
+        <p class="sec-label" style="margin-top:0;margin-bottom:10px">stats base</p>
+        <div class="poke-modal-stats">${stats}</div>
+      </div>`;
+  } catch(e) {
+    pokeContent.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:32px;font-size:12px">Erro ao carregar. Verifique sua conexão.</p>';
+  }
+}
+
+function idFromSrc(src) {
+  const m = src.match(/\/pokemon(?:\/versions\/generation-v\/black-white(?:\/animated)?)?\/(?:shiny\/)?(\d+)\.(?:png|gif)/);
+  return m ? m[1] : null;
+}
+
+document.querySelectorAll('.poke-card, .starter-pick').forEach(el => {
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', () => {
+    const id = el.dataset.pokeid || idFromSrc(el.querySelector('img').src);
+    if (id) showPokeModal(id);
+  });
+});
+document.querySelectorAll('.poke-card[data-pokeid]').forEach(el => {
+  if (FAV_IDS.has(Number(el.dataset.pokeid))) {
+    const s = document.createElement('span');
+    s.className = 'fav-star';
+    s.textContent = '⭐';
+    el.appendChild(s);
+  }
+});
+
+async function toggleGen(n, btn) {
+  const container = document.getElementById(`gen-exp-${n}`);
+  if (container.dataset.loaded === 'true') {
+    const isOpen = container.style.display !== 'none';
+    container.style.display = isOpen ? 'none' : 'grid';
+    btn.textContent = isOpen ? 'Ver Mais ▼' : 'Recolher ▲';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'carregando...';
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/generation/${n}`);
+    const data = await res.json();
+    const species = data.pokemon_species
+      .map(s => ({ id: parseInt(s.url.split('/').filter(Boolean).pop()), name: s.name }))
+      .sort((a, b) => a.id - b.id);
+    container.innerHTML = species.map(s => {
+      const num = String(s.id).padStart(3, '0');
+      const label = s.name.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+      const sprV = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${s.id}.png`;
+      const sprFb = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${s.id}.png`;
+      const star = FAV_IDS.has(s.id) ? '<span class="fav-star">⭐</span>' : '';
+      return `<div class="poke-card" data-pokeid="${s.id}" style="cursor:pointer">${star}<img src="${sprV}" alt="${label}" loading="lazy" onerror="this.onerror=null;this.src='${sprFb}'"><div class="poke-num">#${num}</div><div class="poke-name">${label}</div><div class="poke-types" id="pt-${s.id}"></div></div>`;
+    }).join('');
+    container.querySelectorAll('.poke-card').forEach(el => {
+      el.addEventListener('click', () => { const id = el.dataset.pokeid; if (id) showPokeModal(id); });
+    });
+    container.dataset.loaded = 'true';
+    container.style.display = 'grid';
+    btn.disabled = false;
+    btn.textContent = 'Recolher ▲';
+    /* fetch types in chunks of 20 so cards appear first */
+    const CHUNK = 20;
+    for (let i = 0; i < species.length; i += CHUNK) {
+      await Promise.all(species.slice(i, i + CHUNK).map(async s => {
+        try {
+          const r = await fetch(`https://pokeapi.co/api/v2/pokemon/${s.id}`);
+          const pd = await r.json();
+          const el = document.getElementById(`pt-${s.id}`);
+          if (el) el.innerHTML = pd.types.map(t => {
+            const cls = TYPE_BADGE[t.type.name] || 'tno';
+            const lbl = TYPE_LABEL[t.type.name] || t.type.name.toUpperCase();
+            return `<span class="type-badge ${cls}">${lbl}</span>`;
+          }).join('');
+        } catch(e) {}
+      }));
+    }
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Ver Mais ▼';
+  }
+}
 </script>
 </body>
 </html>

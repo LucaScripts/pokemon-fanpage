@@ -27,7 +27,10 @@
       "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon.ico\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
       "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon.svg\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
       "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\apple-touch-icon.png\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
-      "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\site.webmanifest\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")"
+      "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\site.webmanifest\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
+      "WebFetch(domain:pokeapi.co)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:play.pokemonshowdown.com)"
     ]
   }
 }
