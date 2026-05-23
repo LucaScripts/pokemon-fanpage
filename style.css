@@ -30,6 +30,18 @@
   --shadow2: rgba(0,0,0,0.55);
   --overlay: rgba(0,0,0,0.72);
 }
+/* Pokéball grid BG */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 50% 38%, transparent 26%, rgba(204,0,0,0.06) 26%, rgba(204,0,0,0.06) 33%, transparent 33%),
+    radial-gradient(circle at 50% 50%, rgba(204,0,0,0.04) 48%, transparent 48%);
+  background-size: 64px 64px;
+  pointer-events:none;
+  z-index:0;
+}
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -44,18 +56,6 @@ body {
   flex-direction: column;
 }
 
-/* Pokéball grid BG */
-body::before {
-  content:'';
-  position:fixed;
-  inset:0;
-  background-image:
-    radial-gradient(circle at 50% 38%, transparent 26%, rgba(204,0,0,0.06) 26%, rgba(204,0,0,0.06) 33%, transparent 33%),
-    radial-gradient(circle at 50% 50%, rgba(204,0,0,0.04) 48%, transparent 48%);
-  background-size: 64px 64px;
-  pointer-events:none;
-  z-index:0;
-}
 
 /* ===== TOP BAR ===== */
 .top-bar {
@@ -241,6 +241,7 @@ main { position:relative; z-index:1; flex:1; display:flex; flex-direction:column
 .panel-overlay {
   position:fixed; inset:0;
   z-index:200; pointer-events:none;
+  overflow:hidden;
 }
 .panel-overlay.open { pointer-events:all; }
 .panel-backdrop {

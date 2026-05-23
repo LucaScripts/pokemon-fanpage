@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(node -e ' *)",
+      "WebSearch",
+      "WebFetch(domain:game-icons.net)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://game-icons.net/icons/ffffff/transparent/1x1/delapouite/sound-on.png\" -OutFile \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\Imagens\\\\sound-on.png\" -UseBasicParsing)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://game-icons.net/icons/ffffff/transparent/1x1/delapouite/sound-off.png\" -OutFile \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\Imagens\\\\sound-off.png\" -UseBasicParsing)",
+      "PowerShell(\\(Get-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\Imagens\\\\sound-on.png\"\\).Length; \\(Get-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\Imagens\\\\sound-off.png\"\\).Length)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git config *)",
+      "Bash(git push *)",
+      "PowerShell(Invoke-RestMethod -Uri \"https://api.github.com/users/luscasdev/repos?per_page=100\")",
+      "PowerShell($repos = Invoke-RestMethod -Uri \"https://api.github.com/users/luscasdev/repos?per_page=100\"; $repos | ForEach-Object { \"$\\($_.name\\) — $\\($_.clone_url\\)\" })",
+      "Bash(echo \"=== genshin-assistant ===\" && find \"c:\\\\Users\\\\lucas\\\\Downloads\\\\_migrate\\\\genshin-assistant\" -not -path \"*/.git/*\" -type f | head -30 && echo \"=== Netflix-Login ===\" && find \"c:\\\\Users\\\\lucas\\\\Downloads\\\\_migrate\\\\Netflix-Login\" -not -path \"*/.git/*\" -type f | head -20 && echo \"=== Socket-Python ===\" && find \"c:\\\\Users\\\\lucas\\\\Downloads\\\\_migrate\\\\Socket-Python\" -not -path \"*/.git/*\" -type f | head -20 && echo \"=== votesystem ===\" && find \"c:\\\\Users\\\\lucas\\\\Downloads\\\\_migrate\\\\votesystem\" -not -path \"*/.git/*\" -type f | head -20)",
+      "Read(//c/Users/lucas/Downloads/_migrate/genshin-assistant/**)",
+      "Read(//c/Users/lucas/Downloads/_migrate/Netflix-Login/**)",
+      "Read(//c/Users/lucas/Downloads/_migrate/Socket-Python/**)",
+      "Read(//c/Users/lucas/Downloads/_migrate/votesystem/**)",
+      "Bash(ls \"c:\\\\Users\\\\lucas\\\\Downloads\\\\favicon.zip\" 2>/dev/null && echo \"found\" || echo \"not found\")",
+      "Read(//c/Users/lucas/Downloads/**)",
+      "PowerShell(New-Item -ItemType Directory -Path \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\" -Force)",
+      "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon-96x96.png\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
+      "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon.ico\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
+      "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon.svg\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
+      "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\apple-touch-icon.png\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
+      "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\site.webmanifest\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")"
+    ]
+  }
+}
