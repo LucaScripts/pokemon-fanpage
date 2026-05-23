@@ -105,7 +105,7 @@ body {
   background:var(--red);
   color:white;
   padding:7px 14px;
-  height:46px;
+  min-height:46px;
   border-radius:14px;
   font-family:'Press Start 2P', monospace;
   font-size: clamp(5px,1vw,7px);
@@ -119,6 +119,8 @@ body {
   max-width: calc(100vw - 110px);
   border:2.5px solid rgba(255,255,255,0.18);
 }
+.music-info { display:flex; flex-direction:column; gap:3px; }
+.track-prev { font-size:5px; opacity:0.65; }
 .music-badge.on { opacity:1; transform:translateY(0); }
 .music-dot {
   width:8px; height:8px;
@@ -616,6 +618,14 @@ main { position:relative; z-index:1; flex:1; display:flex; flex-direction:column
   .hero h1 { font-size: clamp(10px,5.5vw,16px); }
   .cards-grid { gap:10px; }
   .nav-card img { width:58px; height:58px; }
+  .poke-grid, .poke-grid-expanded { grid-template-columns:repeat(2,1fr); }
+  .gen-count { display:none; }
+}
+
+/* Touch devices: desativa cursor customizado */
+@media (hover:none) and (pointer:coarse) {
+  * { cursor:auto !important; }
+  #poke-cursor { display:none !important; }
 }
 
 /* Starter picks */

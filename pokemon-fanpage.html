@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>if(localStorage.getItem('poke_dark')==='1')document.documentElement.setAttribute('data-theme','dark');</script>
 <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
 <link rel="shortcut icon" href="favicon/favicon.ico" />
@@ -49,7 +50,10 @@
 <!-- Music badge -->
 <div class="music-badge" id="musicBadge">
   <div class="music-dot"></div>
-  <span id="trackName">Pokémon Lab — Kanto</span>
+  <div class="music-info">
+    <span id="trackName">Pokémon Lab — Kanto</span>
+    <span id="trackPrev" class="track-prev"></span>
+  </div>
 </div>
 
 <!-- MAIN -->
@@ -759,9 +763,9 @@
 })();
 
 /* ========== STATE ========== */
-let isDark = false;
+let isDark = localStorage.getItem('poke_dark') === '1';
 let isMuted = true;
-let bgVolume = 0.35;
+let bgVolume = parseFloat(localStorage.getItem('poke_vol') || '0.35');
 let audioCtx = null;
 
 /* ========== AUDIO ENGINE (SFX only) ========== */
@@ -785,8 +789,10 @@ bgAudio.loop = true;
 bgAudio.volume = bgVolume;
 
 const trackNameEl = document.getElementById('trackName');
+const trackPrevEl = document.getElementById('trackPrev');
 
 function playNextTrack() {
+  if (trackIdx >= 0) trackPrevEl.textContent = '↩ ' + TRACKS[trackIdx].label;
   trackIdx = (trackIdx + 1) % TRACKS.length;
   bgAudio.src = TRACKS[trackIdx].src;
   trackNameEl.textContent = TRACKS[trackIdx].label;
@@ -879,11 +885,14 @@ function playBooster() { boosterSfx.currentTime = 0; boosterSfx.play().catch(() 
 const themeBtn = document.getElementById('themeBtn');
 const themeIcon = document.getElementById('themeIcon');
 const ITEMS = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/';
+/* restore saved theme icon */
+if (isDark) themeIcon.src = 'Imagens/lua-pokemon.png';
 themeBtn.addEventListener('click', () => {
   playPlink();
   isDark = !isDark;
   document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   themeIcon.src = isDark ? 'Imagens/lua-pokemon.png' : 'Imagens/sol-icon.png';
+  localStorage.setItem('poke_dark', isDark ? '1' : '0');
 });
 
 /* Sound */
@@ -953,6 +962,7 @@ soundBtn.addEventListener('wheel', e => {
   bgVolume = Math.min(1, Math.max(0, bgVolume + (e.deltaY < 0 ? 0.1 : -0.1)));
   bgVolume = Math.round(bgVolume * 10) / 10;
   if (!isMuted) bgAudio.volume = bgVolume;
+  localStorage.setItem('poke_vol', bgVolume);
   showVolTip();
 }, { passive: false });
 
@@ -1077,6 +1087,8 @@ document.querySelectorAll('.poke-card, .starter-pick').forEach(el => {
     if (id) showPokeModal(id);
   });
 });
+document.querySelectorAll('.poke-grid img').forEach(img => { img.loading = 'lazy'; });
+
 document.querySelectorAll('.poke-card[data-pokeid]').forEach(el => {
   if (FAV_IDS.has(Number(el.dataset.pokeid))) {
     const s = document.createElement('span');
@@ -1097,11 +1109,19 @@ async function toggleGen(n, btn) {
   btn.disabled = true;
   btn.textContent = 'carregando...';
   try {
-    const res = await fetch(`https://pokeapi.co/api/v2/generation/${n}`);
-    const data = await res.json();
-    const species = data.pokemon_species
-      .map(s => ({ id: parseInt(s.url.split('/').filter(Boolean).pop()), name: s.name }))
-      .sort((a, b) => a.id - b.id);
+    const cacheKey = `poke_gen_${n}`;
+    let species;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+      species = JSON.parse(cached);
+    } else {
+      const res = await fetch(`https://pokeapi.co/api/v2/generation/${n}`);
+      const data = await res.json();
+      species = data.pokemon_species
+        .map(s => ({ id: parseInt(s.url.split('/').filter(Boolean).pop()), name: s.name }))
+        .sort((a, b) => a.id - b.id);
+      sessionStorage.setItem(cacheKey, JSON.stringify(species));
+    }
     container.innerHTML = species.map(s => {
       const num = String(s.id).padStart(3, '0');
       const label = s.name.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
