@@ -30,7 +30,11 @@
       "PowerShell(Move-Item \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\site.webmanifest\" \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\favicon\\\\\")",
       "WebFetch(domain:pokeapi.co)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:play.pokemonshowdown.com)"
+      "WebFetch(domain:play.pokemonshowdown.com)",
+      "Bash(dir \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\\\\Imagens\" /b)",
+      "Bash(dir \"c:\\\\Users\\\\lucas\\\\Downloads\\\\pokemon\" /b)",
+      "Bash(pip show *)",
+      "Bash(node loop-from.js)"
     ]
   }
 }
