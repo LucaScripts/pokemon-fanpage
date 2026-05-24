@@ -945,17 +945,30 @@ function updateSoundIcon() {
   document.getElementById('soundIcon').src = isMuted ? 'Imagens/sound-off.png' : 'Imagens/sound-on.png';
 }
 
+const jigglyEl    = document.getElementById('jigglyGif');
+const JIGGLY_LOOP  = 'Imagens/jiggly-loop.gif';
+const JIGGLY_ANGRY = 'Imagens/angry.com-speed.gif';
+let jigglyTimer = null;
+
 soundBtn.addEventListener('click', () => {
   playGameBoy();
   isMuted = !isMuted;
   updateSoundIcon();
+  clearTimeout(jigglyTimer);
   if (isMuted) {
     stopBgMusic();
     musicBadge.classList.remove('on');
+    jigglyEl.src = JIGGLY_ANGRY;
+    jigglyEl.style.display = 'block';
+    jigglyTimer = setTimeout(() => {
+      jigglyEl.style.display = '';
+      jigglyEl.src = JIGGLY_LOOP;
+    }, 1200);
   } else {
     bgAudio.volume = bgVolume;
     playNextTrack();
     musicBadge.classList.add('on');
+    jigglyEl.src = JIGGLY_LOOP;
   }
   showVolTip();
 });
